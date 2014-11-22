@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'phpcs/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'phpcs'
+  spec.name          = 'phpcsrb'
   spec.version       = Phpcs::VERSION
-  spec.authors       = ['Kevin Chavanne']
-  spec.email         = ['kevin@craftsmen.io']
+  spec.authors       = ['Kevin Chavanne', 'Blaine Schmeisser']
+  spec.email         = ['kevin@craftsmen.io', 'blainesch@gmail.com']
   spec.summary       = %q{Ruby wrapper for phpcs}
   spec.description   = %q{Ruby wrapper for phpcs}
-  spec.homepage      = 'https://github.com/craftsmen/phpcs-rb'
+  spec.homepage      = 'https://github.com/blainesch/phpcs-rb'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
