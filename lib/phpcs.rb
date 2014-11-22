@@ -18,7 +18,11 @@ module Phpcs
     ]
 
     def initialize(standard = nil)
-      @standard = (STANDARDS.include? standard) ? standard : 'PSR2'
+      @standard = (standard.to_s.empty?) ? 'PSR2' : standard
+    end
+
+    def phpcs_path
+      @path ||= File.expand_path('../../PHP_CodeSniffer/scripts/phpcs', __FILE__)
     end
 
     def lint(content)
@@ -27,7 +31,7 @@ module Phpcs
       file.write(content)
       file.close
 
-      stdin, stdout, stderr, wait_thr = Open3.popen3('PHP_CodeSniffer/scripts/phpcs', file.path, "--standard=#{@standard}", '--report=json')
+      stdin, stdout, stderr, wait_thr = Open3.popen3(phpcs_path, file.path, "--standard=#{@standard}", '--report=json')
 
       out = JSON.load(stdout.read)
 
