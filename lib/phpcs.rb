@@ -19,6 +19,12 @@ module Phpcs
 
     def initialize(standard = nil)
       @standard = (standard.to_s.empty?) ? 'PSR2' : standard
+      unless STANDARDS.include?(@standard)
+        file = Tempfile.new(['standard', '.xml'])
+        file.write(standard)
+        file.close
+        @standard = file.path
+      end
     end
 
     def phpcs_path

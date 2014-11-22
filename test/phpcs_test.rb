@@ -80,5 +80,13 @@ class PhpcsTest < Minitest::Test
     assert_equal results[5].comment, 'A closing tag is not permitted at the end of a PHP file'
   end
 
+  def test_custom_standard
+    file = File.open('test/fixtures/foo.php')
+    phpcs = Phpcs::Phpcs.new('<?xml version="1.0"?><ruleset name="Example Ruleset"><rule ref="Zend"></rule></ruleset>')
+    results = phpcs.lint(file.read)
+
+    assert_equal results.count, 6
+  end
+
 
 end
