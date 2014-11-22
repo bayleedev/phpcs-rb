@@ -27,7 +27,7 @@ module Phpcs
       file.write(content)
       file.close
 
-      stdin, stdout, stderr, wait_thr = Open3.popen3('phpcs', file.path, "--standard=#{@standard}", '--report=json')
+      stdin, stdout, stderr, wait_thr = Open3.popen3('PHP_CodeSniffer/scripts/phpcs', file.path, "--standard=#{@standard}", '--report=json')
 
       out = JSON.load(stdout.read)
 
